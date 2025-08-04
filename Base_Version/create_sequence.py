@@ -25,7 +25,6 @@ def create_sequence(input_file, seq_len, val_ratio=0.15):
 
     """
     assert 0 <= val_ratio < 1
-    print(input_file == 'shakespeare.txt')
     with open(input_file, 'r') as f:
         text = f.read()
 

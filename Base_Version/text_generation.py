@@ -13,36 +13,29 @@ random.manual_seed(0)
 
 
 def text_generation(rnn_type='basic_rnn', input_file="shakespeare.txt", sample_len=2000, seed="KING"):
+    # Specify the hidden size depending on the rnn type
     if rnn_type == "basic_rnn":
-        # specify the sequence length, hidden size and number of layers
-        seq_len = 100
-        num_layers = 2
         hidden_size = 128
 
-        # specify train opts
-        train_opts = {
-            "num_epochs": 120,
-            "lr": 0.01,
-            "batch_size": 64,
-            "weight_decay": 0.0001
-        }
-
     elif rnn_type == "lstm_rnn":
-        # specify the sequence length, hidden size and number of layers
-        seq_len = 100
-        num_layers = 2
         hidden_size = 256
-
-        # specify train_opts
-        train_opts = {
-            "num_epochs": 120,
-            "lr": 0.01,
-            "batch_size": 64,
-            "weight_decay": 0.0001
-        }
         
     else:
         raise ValueError(f"Unknown RNN type {rnn_type}")
+    
+
+    # specify the sequence length and number of layers
+    seq_len = 100
+    num_layers = 2
+
+    # specify train opts
+    train_opts = {
+        "num_epochs": 120,
+        "lr": 0.01,
+        "batch_size": 64,
+        "weight_decay": 0.0001
+    }
+
 
     train_ds, val_ds, char_to_index, index_to_char = create_sequence(input_file, seq_len=seq_len)
     vocab_size = len(char_to_index)
@@ -77,7 +70,7 @@ def text_generation(rnn_type='basic_rnn', input_file="shakespeare.txt", sample_l
 
 if __name__ == '__main__':
     parser = ArgumentParser()
-    # change to "lstm_rnn for an lstm cell
+    # change to "lstm_rnn" for an lstm cell, "basic_rnn" for a basic rnn cell
     parser.add_argument("--rnn_type", default="lstm_rnn", type=str, help="Specify rnn type")
     parser.add_argument("--input_file", default="shakespeare.txt", type=str, help="The source corpus")
     parser.add_argument("--sample_len", default=2000, type=int, help="The length of text to generate")

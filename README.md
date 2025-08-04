@@ -1,11 +1,11 @@
 # RNN Project with LSTM add-on
 
-Python Version:
-Conda env (This is for my own book-keeping):
-Dependencies:
+Python Version: 3.12.3
+
+Conda env (this is for my own book-keeping): rnn_project
+
+Dependencies are listed in dependencies.txt
 
 
-
-# Instructions to run:
-
+To run ```cd``` into one of ```Base_Version``` or ```GPU_Adapted``` and run ```text_generation.py```.
 
