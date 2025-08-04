@@ -1,6 +1,6 @@
 from lstm_cell import LSTMCell
 from basic_rnn_cell import BasicRNNCell
-from torch import nn, zeros, empty_like
+from torch import nn, zeros
 
 
 class CustomRNN(nn.Module):
@@ -25,8 +25,7 @@ class CustomRNN(nn.Module):
         self.vocab_size = vocab_size
         self.num_layers = num_layers
 
-        # create a ModuleList self.rnn to hold the layers of the RNN
-        # and append the appropriate RNN layers to it
+        # Create a ModuleList self.rnn to hold the layers of the RNN and append the appropriate RNN layers to it
         self.rnn = nn.ModuleList()
 
 
@@ -65,48 +64,6 @@ class CustomRNN(nn.Module):
         c: (Tensor) of size (l x B x m), the cell state of the last time step, if the rnn is a basic_rnn, c should be
             the cell state passed in as input.
         """
-
-        # compute the hidden states and cell states (for an lstm_rnn) for each mini-batch in the sequence
-
-        # outs = zeros(x.shape[0], x.shape[1], h.shape[2])
-        # # nxt = zeros(x.shape[0], x.shape[1], h.shape[2])
-
-        # # Go up layers
-        # for i in range(self.num_layers):
-
-        #     h_l = h.clone()
-        #     c_l = c.clone()
-        #     nxt = outs.clone()
-
-        #     if i == 0:
-        #         x_t = x.clone()
-        #     else:
-        #         x_t = outs.clone()
-            
-        #     # Go across time-steps
-        #     for j in range(x.shape[1]):
-
-        #         x_temp = x_t[:,j,:]
-
-        #         # Call forward of current cell and get h to use on next cell in time series
-        #         if self.rnn_type == 'basic_rnn':
-        #             h_l[i] = self.rnn[i].forward(x_temp, h_l[i])
-                
-        #         # Call forward of current cell and get h and c to use on next cell in time series
-        #         else:
-        #             h_l[i], c_l[i] = self.rnn[i].forward(x_temp, h_l[i], c_l[i])
-                
-        #         # Store the new values to input to the next layer
-        #         nxt[:,j,:] = h_l[i].clone()
-                
-            
-        #     #
-        #     h = h_l
-        #     c = c_l
-        #     outs = nxt
-
-        #############################################################################################
-        #############################################################################################
 
         # Create a tensor for outs
         outs = zeros(x.shape[0], x.shape[1], h.shape[2])

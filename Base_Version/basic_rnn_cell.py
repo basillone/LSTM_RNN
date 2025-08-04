@@ -31,6 +31,9 @@ class BasicRNNCell(nn.Module):
         # V, the hidden state weights matrix has size (m, m)
         # b, the vector of bias, has size (m)
 
+
+
+
     def forward(self, x, h):
         """
         Defines the forward propagation of an RNN cell with a tanH as activation function

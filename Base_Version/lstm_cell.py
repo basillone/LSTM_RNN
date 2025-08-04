@@ -32,6 +32,8 @@ class LSTMCell(nn.Module):
         # V, the hidden state weights matrix has size (m, (4 * m))
         # b, the vector of biases has size (4 * m)
 
+
+
     def forward(self, x, h, c):
         """
         Defines the forward propagation of an LSTM layer
